@@ -1,0 +1,34 @@
+"""in a list of randomly generated numbers between 0 and 20, the even numbers
+are more likely to appear before the halfway point of the list."""
+
+
+import random
+
+def random_list_with_count():
+    a = [random.randint(0, 20) for x in range(0,10)]  # creates a ten element list of random numbers between 0 and 20
+    # print(a)
+
+    b = []
+    count = 0  # counter for when an even number appears in a list
+    for i in a:  # for loop checking each element for odd or even and if it is even break out of the statement. 
+                 #Also keeps track of how many odd numbers before an even number is encountered in a list
+        if i % 2 != 0:
+            b.append(i)
+            count += 1
+        else:
+            break
+    return count
+        
+# for i in range(1,101):
+#     (f"{i}) {random_list_with_count()}")
+
+# c = [random_list_with_count() for x in range(1,1001) ]  #make 1000 samples of the previoulsy defined function
+# d = [x for x in c if x >= 5]  # check for the number of times an even number appears after the halfway point of the list i.e 4th index 
+# print(d,len(d))
+def sample_size_generator():
+    
+    c = [random_list_with_count() for _ in range(1,1000) if random_list_with_count() >= 2]
+    return len(c)
+        
+for i in range(0,1001):
+    print(sample_size_generator())
